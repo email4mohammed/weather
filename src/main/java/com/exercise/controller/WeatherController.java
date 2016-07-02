@@ -57,6 +57,7 @@ public class WeatherController {
 		model.addAttribute("sunset", weatherResponse.getTimeSunset());
 		model.addAttribute("tempC", weatherResponse.getTempC());
 		model.addAttribute("tempF", weatherResponse.getTempF());
+		model.addAttribute("date", weatherResponse.getDate());
 
 		return "response";
 	}

@@ -3,6 +3,7 @@ package com.exercise.service;
 import java.io.StringReader;
 import java.text.DecimalFormat;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -96,6 +97,12 @@ public class WeatherService implements WeatherServiceI {
 		weather.setDescription(description);
 		weather.setCity(city);
 		weather.setTempF(df.format(fahrenheit));
+		
+		
+		//date
+		formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		weather.setDate(LocalDateTime.now().format(formatter));
+		
 		return weather;
 	}
 	
