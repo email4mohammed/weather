@@ -12,9 +12,9 @@ ASSUMPTIONS:
 TO RUN THE WEB APPLICATION:
 ==========================
 
-1. Download the repository from Github.
-2. In the log4j.properties file, located in weather\src\main\resources, modify the log4j.appender.file.File property to a suitable location on your machine for the application log files to reside.
-3. In the repository root folder, weather, execute the command "mvn jetty:run"
+1. Download the repository "weather" from Github location https://github.com/email4mohammed as a zip file. Unzip to your local machine and navigate to the "weather-master" folder.
+2. In the log4j.properties file, located in the "src\main\resources" folder , modify the log4j.appender.file.File property to a suitable location on your machine for the application log files to reside.
+3. From the "weather-master" folder (which contains the pom.xml file), execute the command "mvn jetty:run"
 4. Once Jetty has started, run the application in your favourite web browser with URL http://localhost:8080/weather/search
 
 
