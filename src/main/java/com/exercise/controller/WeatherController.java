@@ -1,6 +1,7 @@
 package com.exercise.controller;
 
-import java.util.ArrayList;
+import com.exercise.entity.Weather;
+import com.exercise.service.WeatherService;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,33 +14,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.exercise.entity.Weather;
-import com.exercise.service.WeatherService;
+import java.util.ArrayList;
 
 @Controller
 @ControllerAdvice
 public class WeatherController {
-	
-	final static Logger LOGGER = Logger.getLogger(WeatherController.class);
 
+	static final Logger LOGGER = Logger.getLogger(WeatherController.class);
+	
 	@Autowired
 	private WeatherService weatherService;
 	
 	@Autowired
 	private ArrayList<String> listOfCities = new ArrayList<String>();
+	
+
 
 	public WeatherService getWeatherService() {
 		return weatherService;
 	}
 
-	public void setWeatherService(WeatherService weatherService) {
+	public void setWeatherService(final WeatherService weatherService) {
 		this.weatherService = weatherService;
 	}
+	
+	public ArrayList<String> getListOfCities() {
+		return listOfCities;
+	}
+
+	public void setListOfCities(final ArrayList<String> listOfCities) {
+		this.listOfCities = listOfCities;
+	}	
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView weather() {
 		
-		ModelAndView mav = new ModelAndView("searchForm", "command", new Weather());
+		final ModelAndView mav = new ModelAndView("searchForm", "command", new Weather());
 		mav.addObject("listOfCities", listOfCities);
 		
 		return mav;
@@ -49,7 +59,7 @@ public class WeatherController {
 	public String getWeather(@ModelAttribute("SpringWeb") Weather weather,
 			ModelMap model) throws Exception {
 
-		Weather weatherResponse = weatherService.getCurrentWeather(weather.getCity());
+		final Weather weatherResponse = weatherService.getCurrentWeather(weather.getCity());
 
 		model.addAttribute("description", weatherResponse.getDescription());
 		model.addAttribute("city", weatherResponse.getCity());
@@ -63,17 +73,11 @@ public class WeatherController {
 	}
 	
 	@ExceptionHandler(Exception.class)
-	public String exception(Exception e) {
+	public String exception(final Exception e) {
 		LOGGER.error("Error",e);
 		return "error";
 	}
 
-	public ArrayList<String> getListOfCities() {
-		return listOfCities;
-	}
 
-	public void setListOfCities(ArrayList<String> listOfCities) {
-		this.listOfCities = listOfCities;
-	}
 
 }

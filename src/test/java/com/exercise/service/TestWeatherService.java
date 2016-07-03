@@ -1,13 +1,13 @@
 package com.exercise.service;
 
-import java.util.HashMap;
+import com.exercise.dao.WeatherDaoXml;
+import com.exercise.entity.Weather;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.exercise.dao.WeatherDaoXml;
-import com.exercise.entity.Weather;
+import java.util.HashMap;
 
 public class TestWeatherService {
 	
@@ -16,12 +16,12 @@ public class TestWeatherService {
 	@Before
 	public void setUp() {
 
-		HashMap<String, String> cityTimezones = new HashMap<String, String>();
+		final HashMap<String, String> cityTimezones = new HashMap<String, String>();
 		
 		cityTimezones.put("London","Europe/London");
 		cityTimezones.put("Hong Kong","Asia/Hong_Kong");
 		
-		WeatherDaoXml dao = new WeatherDaoXml();
+		final WeatherDaoXml dao = new WeatherDaoXml();
 		dao.setUrl("http://api.openweathermap.org/data/2.5/weather?q=");
 		dao.setAppId("840e8c16f7f491627561e53162a06215");
 		
@@ -35,7 +35,7 @@ public class TestWeatherService {
 	@Test
 	public void testValidCity() throws Exception {
 
-		Weather weather = service.getCurrentWeather("London");
+		final Weather weather = service.getCurrentWeather("London");
 		
 		Assert.assertEquals("London", weather.getCity());
 		
@@ -45,7 +45,7 @@ public class TestWeatherService {
 	@Test(expected=NullPointerException.class)
 	public void testInvalidCity() throws Exception{
 		
-			Weather weather = service.getCurrentWeather("Timbuctu");
+			service.getCurrentWeather("Timbuctu");
 
 	}
 	

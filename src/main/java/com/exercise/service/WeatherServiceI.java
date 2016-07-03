@@ -4,5 +4,5 @@ import com.exercise.entity.Weather;
 
 public interface WeatherServiceI {
 
-		Weather getCurrentWeather(String London) throws Exception;
+		Weather getCurrentWeather(String city) throws Exception;
 }

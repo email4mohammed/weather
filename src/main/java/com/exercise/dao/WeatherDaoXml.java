@@ -1,15 +1,14 @@
 package com.exercise.dao;
 
+import org.apache.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import org.apache.log4j.Logger;
-
-
 public class WeatherDaoXml implements WeatherDaoI {
 	
-	final static Logger LOGGER = Logger.getLogger(WeatherDaoXml.class);
+	static final Logger LOGGER = Logger.getLogger(WeatherDaoXml.class);
 	
 	private String url;
 	private String appId;
@@ -18,7 +17,7 @@ public class WeatherDaoXml implements WeatherDaoI {
 		return url;
 	}
 
-	public void setUrl(String url) {
+	public void setUrl(final String url) {
 		this.url = url;
 	}
 
@@ -37,9 +36,9 @@ public class WeatherDaoXml implements WeatherDaoI {
 		StringBuilder weatherDetails = new StringBuilder();
 		
 		try {
-			URL location = new URL(url+city+"&APPID="+appId+"&mode=XML");
+			final URL location = new URL(url+city+"&APPID="+appId+"&mode=XML");
 			
-			BufferedReader reader = new BufferedReader(new InputStreamReader(location.openStream()));
+			final BufferedReader reader = new BufferedReader(new InputStreamReader(location.openStream()));
 			String weatherLine = "";
 			while (null != (weatherLine = reader.readLine())) {
 				weatherDetails.append(weatherLine);
