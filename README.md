@@ -24,7 +24,7 @@ TODOS:
 - Checktyles on indentations and tab characters have been ignored due to time constraints, as it uses the default Eclipse Luna formatter and tab spaces. Most other Checkstyles issues have been resolved.
 - Basic JUnit testing is present. Would have liked to have tested the page navigation flows if time had permitted.
 - May need to rethink exception handling strategy. For the moment, for the basic functionality it is doing, it is sufficient.
-- As the applicaton scales up: 
+- As the application scales up: 
 	(a) will need to find ways to store and refresh Timezones (currently hardcoded in Spring configuration to London and Hong Kong to meet this specific exercise requirement)
 	(b) one JVM will not be sufficient, and will need to distribute across multiple nodes. A natural remoting layer exists at the service layer (e.g. JAX-RS/SOAP).
 
